@@ -3,10 +3,17 @@ import time
 from json import loads
 from concurrent.futures import ThreadPoolExecutor
 from os import path
+import os
+import sys
 
-EXECUTABLE = path.abspath('cmake-build-debug\\LMCEmulator.exe')
-BINARY = path.abspath('src\\collatz.lmc')
-CORRECT_DATA = path.abspath('src\\collatz.json')
+if os.name == 'Windows':
+    EXECUTABLE = path.abspath('build\\LMCEmulator.exe')
+    BINARY = path.abspath(sys.argv[1])
+    CORRECT_DATA = path.abspath('src\\collatz.json')
+else:
+    EXECUTABLE = path.abspath('build/LMCEmulator')
+    BINARY = path.abspath(sys.argv[1])
+    CORRECT_DATA = path.abspath('src/collatz.json')
 
 def filter_correct_under_1000(answer):
     correct_answer = []
