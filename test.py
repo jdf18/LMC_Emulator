@@ -4,9 +4,9 @@ from json import loads
 from concurrent.futures import ThreadPoolExecutor
 from os import path
 
-EXECUTABLE = path.abspath('cmake-build-debug\\LMCEmulator.exe')
-BINARY = path.abspath('src\\collatz.lmc')
-CORRECT_DATA = path.abspath('src\\collatz.json')
+EXECUTABLE = path.abspath('build/LMCEmulator')
+BINARY = path.abspath('src/collatz.lmc')
+CORRECT_DATA = path.abspath('src/collatz.json')
 
 def filter_correct_under_1000(answer):
     correct_answer = []
@@ -22,14 +22,14 @@ def check_output(command, answer, i) -> bool:
     out = subprocess.check_output(command, shell=True)
 
     passed = all(map(lambda x:x[0]==x[1], zip(
-        answer[1:],
+        answer,
         tuple(map(int, filter(lambda x:x, map(str.strip, out.decode().split('\n')))))
     )))
 
     if not passed:
         print(f"Failed n = {i}")
-        print(out)
-        print(answer)
+        print(tuple(map(int, filter(lambda x:x, map(str.strip, out.decode().split('\n'))))))
+        print(tuple(answer))
     else:
         print("Passed", i)
 
@@ -48,6 +48,10 @@ if __name__ == '__main__':
         )
 
     parameters = tuple(map(return_params, range(1, 1000)))
+
+    #check_output(*parameters[2])
+    #exit()
+
     start = time.time()
 
     with ThreadPoolExecutor() as executor:
