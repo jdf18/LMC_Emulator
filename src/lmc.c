@@ -27,15 +27,17 @@ int step_lmc(LMC_Context* lmc_state) {
             lmc_state->halted = true;
             break;
         case 1: // ADD
-            lmc_state->accumulator += lmc_state->mailboxes[operand] % 1000;
+            lmc_state->accumulator = (lmc_state->accumulator + lmc_state->mailboxes[operand]) % 1000;
             break;
         case 2: // SUBTRACT
             if (lmc_state->mailboxes[operand] > lmc_state->accumulator) {
                 lmc_state->neg_flag = true;
+                lmc_state->accumulator = (lmc_state->mailboxes[operand] - lmc_state->accumulator) % 1000;
             } else {
                 lmc_state->neg_flag = false;
+                lmc_state->accumulator = (lmc_state->accumulator - lmc_state->mailboxes[operand]) % 1000;
             }
-            lmc_state->accumulator -= lmc_state->mailboxes[operand] % 1000;
+            
             break;
         case 3: // STORE
             lmc_state->mailboxes[operand] = lmc_state->accumulator;
