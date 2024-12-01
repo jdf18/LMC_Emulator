@@ -29,7 +29,7 @@ def check_output(command, answer, i) -> bool:
     out = subprocess.check_output(command, shell=True)
 
     passed = all(map(lambda x:x[0]==x[1], zip(
-        answer[1:],
+        answer,
         tuple(map(int, filter(lambda x:x, map(str.strip, out.decode().split('\n')))))
     )))
 
@@ -38,7 +38,8 @@ def check_output(command, answer, i) -> bool:
         print(out)
         print(answer)
     else:
-        print("Passed", i)
+        # print("passed")
+        pass
 
     return passed
 
