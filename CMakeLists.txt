@@ -8,3 +8,8 @@ add_executable(LMCEmulator src/main.c
         src/lmc.h
         src/lmc_reader.c
         src/lmc_reader.h)
+
+add_executable(CollatzSolver src/find_solutions.c
+        src/lmc.c
+        src/lmc.h
+)
