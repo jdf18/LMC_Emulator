@@ -1,6 +1,12 @@
 # LMC Emulator
 
-# Installation
+## Requirements
+
+- Python version 3.9 or later
+- CMake and a suitable C toolchain
+- Make
+
+## Installation
 
 ```
 git clone https://github.com/jdf18/LMC_Emulator.git
@@ -10,21 +16,20 @@ cmake ..
 make
 ```
 
-# Usage
+## Usage
 Place the compiled .lmc file in the project directory (e.g. `./code.lmc`)
 
-## Executing the .lmc code for a single input value
+### Executing the .lmc code for a single input value
 
-Call `./build/LMCEmulator ./code.lmc VALUE` 
+Call `./build/LMCEmulator ./code.lmc VALUE` to simulate the computer for the input value provided. 
 
-The executable will be called `LMCEmulator.exe` in Windows.
+### Testing for a series of inputs
 
-## Testing for a series of inputs
-
-The code in collatz_test.py shows how to do this for the sequence produced by the collatz conjecture.
+The code in `collatz_test.py` shows how to test for a series of inputs that the correct outputs are produced.\
+It checks that the output for any input into the program returns the correct sequence of numbers produced when following the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 
 Run the python script, passing in the path to the .lmc file as the first parameter.
 ```
-python3 test.py ./code.lmc
+python3 collatz_test.py ./code.lmc
 ```
 
