@@ -1,5 +1,8 @@
 # LMC Emulator
 
+An emulator for the [Little Man Computer](https://littlemancomputer.co.uk/), a simple hyprothetical machine that executes assembly instructions, written in C and Python. 
+The emulator interprets LMC assembly instructions, executes them step by step, outputting the results to stdout.
+
 ## Requirements
 
 - Python version 3.9 or later
